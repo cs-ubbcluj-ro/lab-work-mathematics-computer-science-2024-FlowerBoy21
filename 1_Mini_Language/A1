@@ -1,0 +1,88 @@
+Micutaru Robert Ionut 831
+LANGUAGE SPECIFICATIONS
+
+1.	ALPHABET
+alphabet::= <letter> | <digit> | <symbol>
+<letter>::= <uppercaseLetter> | <lowercaseLetter>
+<uppercaseLetter>::= [A-Z]
+<lowercaseLetter>::= [a-z]
+<digit>::= [0-9]
+<nonZeroDigit>::= [1-9]
+<symbols>::= “_” | “.” | “!” | “?” | “#”
+
+2.	LEXICON
+SYMBOLS
+<arithmeticOperators>::= “=” | “+” | “-” | “*” | “/” | “%”
+<comparisonOperators>::= “==” | “<” | “<=” | “>” | “>=”
+<separators>::= “[“ | “]” | “” | “:” | “;” | “ “ | “{“ | “}”
+KEYWORDS
+<keywords>::= “array” | “char” | “int” | “string” | “bool” | “double” | “struct” | “if” | “then” | “else” | “for” | “execute” | “while” | “read” | “print” | “return”
+IDENTIFIERS
+       <identifier>::= <letter> 
+        	  | <letter><elements>
+           	  | <identifier> “.” <identifier>
+      <element>::= <letter> | <digit>
+      <elements>::= <element> | <element><elements>
+CONSTANTS
+      <number>::= <integerNumber> | <realNumber>
+<integerNumber>::= <sign><nonZeroDigit><digits>
+                   | <sign><nonZeroDigit>
+                   | <nonZeroDigit><digits>
+<sign>::= “+” | “-”
+<digits>::= <digit> | <digit><digits>
+<realNumber>::= <integerNumber>”.”<digits><nonZeroDigit>
+               | <digits>”.”<digits><nonZeroDigit>
+               | <integerNumber>”.”<nonZeroDigit>
+               | <digits>”.”<nonZeroDigit>
+<string>::= ‘ " ‘<character>’ " ‘ | ‘ " ‘<character><characters>’ " ‘
+<character>::= <letter> | <digit> | <separators> | <symbols>
+<characters>::= <character> | <character><characters>
+
+3.	SYNTAX
+<program>::= “Algorithm :“ <declarationList> <instructionSet> “EndAlgorithm”
+<declarationList>::= <declaration> | <declaration> “;” <declarationList>
+<declaration>::= <varDeclaration> | <arrayDeclaration> | <structDeclaration>
+<varDeclaration>::= <identifier> “:” <type>
+<arrayDeclaration>::= <array>“[“<integerNumber>”]” “:” “array” <type>
+<array>::= <identifier> “[“ <expression> “]”
+<type>::= “int” | “char” | “string” | “bool”
+<structDeclaration>::= <identifier> “:” <uppercaseLetter><identifier>
+<struct>::= <uppercaseLetter><identifier>”:” “struct”“{“ <declarationList> “}”
+<instructionSet>::= <instruction> | <instruction ";"> 
+<instruction>::= <simpleInstruction> | <structuredInstruction>
+<simpleInstruction>::= <assignment> | <read> | <print>
+<assignment>::= <structure> “=” <expression>
+<structure>::= <identifier> | <array>
+<expression>::=  <term> | <term><arithmeticOperators><term>
+<term>::= <number> | <variable> | <array>
+<read>::= “read ” <identifier> | “read” <array>
+<print>::= “print” "<structure>"
+<structuredInstruction>::= <structuredInstruction>
+                          | <if>
+                          | <while>
+                          | <for>
+<if>::= "if" <condition> "then" <instruction>
+       | "if" <condition> "then" <instruction> "else" <instruction>
+<while>::= "while" <condition> "execute" <instruction>
+<for>::= “for” <start> “” <end> ““ <step> “execute” <instruction>
+<start>::= <identifier> “=” <expression>
+<end>::= <expression>
+<step>::= <integerNumber>
+<condition>::= <expression> <comparisonOperators> <expression>
+             | "!" <condition>
+             | <condition> "&&" <condition>
+             | <condition> "||" <condition>
+
+Algorithm :
+    cerc : struct {
+        raza : float
+    }
+    c : cerc
+    aria : float
+    diametrul : float
+    read c.raza
+    aria = 3.14 * c.raza * c.raza
+    diametrul = 2 * 3.14 * c.raza
+    print aria
+    print diametrul
+EndAlgorithm
