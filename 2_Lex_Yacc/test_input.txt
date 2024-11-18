@@ -1,0 +1,17 @@
+array int x;
+array char y;
+struct Person {
+    string name;
+    int age;
+};
+x = 10;
+y = "John";
+if x > 5 then
+    print "Age is greater than 5";
+else
+    print "Age is 5 or less";
+for i = 0 to 10 execute
+    if i % 2 == 0 then
+        print i;
+    end
+end
