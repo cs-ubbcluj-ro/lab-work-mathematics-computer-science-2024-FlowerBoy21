@@ -1,0 +1,8 @@
+STARI: q0 q1 q2
+ALFABET: x y
+STARE_INIT: q0
+STARI_FINALE: q2
+TRANZITII:
+q0 x q1
+q1 y q2
+q2 x q2
