@@ -1,0 +1,14 @@
+FAFile          ::= StatesSection AlphabetSection StartStateSection FinalStatesSection TransitionsSection
+StatesSection   ::= "STARI:" States
+States          ::= State { State }
+State           ::= <identifier>
+AlphabetSection ::= "ALFABET:" Alphabet
+Alphabet        ::= Symbol { Symbol }
+Symbol          ::= <identifier>
+StartStateSection ::= "STARE_INIT:" State
+FinalStatesSection ::= "STARI_FINALE:" FinalStates
+FinalStates     ::= State { State }
+TransitionsSection ::= "TRANZITII:" { Transition }
+Transition      ::= State Symbol State
+State           ::= <identifier>
+Symbol          ::= <identifier>
