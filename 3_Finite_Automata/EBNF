@@ -1,14 +1,21 @@
-FAFile          ::= StatesSection AlphabetSection StartStateSection FinalStatesSection TransitionsSection
-StatesSection   ::= "STARI:" States
-States          ::= State { State }
-State           ::= <identifier>
-AlphabetSection ::= "ALFABET:" Alphabet
-Alphabet        ::= Symbol { Symbol }
-Symbol          ::= <identifier>
-StartStateSection ::= "STARE_INIT:" State
-FinalStatesSection ::= "STARI_FINALE:" FinalStates
-FinalStates     ::= State { State }
-TransitionsSection ::= "TRANZITII:" { Transition }
-Transition      ::= State Symbol State
-State           ::= <identifier>
-Symbol          ::= <identifier>
+FA_description  ::= "STARI:" states "ALFABET:" alphabet "STARE_INIT:" start_state "STARI_FINALE:" final_states "TRANZITII:" transitions
+
+states          ::= state { state }
+state           ::= identifier
+
+alphabet        ::= symbol { symbol }
+symbol          ::= 'x' | 'y'
+
+start_state     ::= identifier
+
+final_states    ::= state { state }
+
+transitions     ::= transition { transition }
+transition      ::= from_state symbol to_state
+from_state      ::= identifier
+to_state        ::= identifier
+symbol          ::= 'x' | 'y'
+
+identifier      ::= letter { letter | digit | '_' }
+letter          ::= 'a'..'z' | 'A'..'Z'
+digit           ::= '0'..'9'
